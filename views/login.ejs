@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+    </style>
+    <title>UNKNOWN SECRETS</title>
+  </head>
+  <body>
+  <div class="login">
+    <div class="title">
+      <h1><%= Title %></h1>
+    </div>
+    <form action="/login" method="post">
+      <div class="input-addon">
+        <input
+          name="username"
+          type="text"
+          class="input-addon__input"
+          autocomplete="off"
+          placeholder="Enter Secert Username"
+        />
+      </div>
+      <div class="input-addon password">
+        <input
+          name="password"
+          type="password"
+          class="input-addon__input"
+          autocomplete="off"
+          placeholder="Enter Secert Password"
+        />
+      </div>
+      <div class="button">
+        <button class="button-87" role="button">Login</button>
+      </div>
+    </form>
+  </div>
+  <script src="../server.js"></script>
+</body>
+</html>

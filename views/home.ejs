@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <title>SECRETS</title>
+    <link rel="stylesheet" href="home.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quattrocento&display=swap");
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="header-footer">
+      <h1 class="title">OUR SECRETS</h1>
+    </header>
+    <div class="main-body">
+      <% foundpost.reverse().forEach(function name(found) { %>
+      <div class="post">
+        <div class="post-header">
+          <div>
+            <img class="logo" />
+          </div>
+          <div class="post-username">
+          <h3><%= found.title %></h3>
+        </div>
+        </div>
+        <div class="post-content">
+          <p><%= found.content %></p>
+        </div>
+        <div class="time">
+          <p><%= found.uploadTime %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+    <footer class="twitter-footer">
+      <div class="twitter-footer-content">
+        <p> HERE WE REVEAL NEW SECRETS EVERYDAY</p>
+      </div>
+    </footer>
+    <script src="../server.js"></script>
+  </body>
+</html>

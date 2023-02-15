@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="compose.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+    </style>
+    <title>UNKNOWN SECRETS</title>
+  </head>
+  <body>
+    <div>
+    <h1 class="title">NEW SECRET</h1>
+    </div>
+    <form action="/compose" method="post">
+      <div class="input-addon">
+        <input
+          name="title"
+          class="input-addon__input"
+          type="text"
+          placeholder="Title"
+        />
+      </div>
+      <div class="textarea-container">
+        <textarea
+          name="content"
+          class="textarea"
+          placeholder="Enter Your Content"
+        ></textarea>
+      </div>
+      <div class="button">
+        <button name="" class="button-87">SUBMIT</button>
+      </div>
+    </form>
+    <div>
+      <p class="inputfield"><%= inputfields %></p>
+    </div>
+    <script type="module" src="../date.js"></script>
+
+  </body>
+</html>

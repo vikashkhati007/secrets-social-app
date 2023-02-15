@@ -1,0 +1,138 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  font-family: 'Raleway', sans-serif;
+}
+
+.time {
+  font-family: 'Manrope', sans-serif;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+.header-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 90px;
+  background-color: black;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.header-footer-content {
+  text-align: center;
+}
+
+.main-body {
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.title {
+  text-align: center;
+  flex-grow: 1;
+  padding-top: 5vh;
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+}
+
+.logo {
+  background-image: url('./images/logo.jpg');
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  border-color: white;
+}
+
+.home-button i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.create-button i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.post {
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px #999;
+  border-radius: 30px;
+}
+
+
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post-header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.post-username {
+  margin-left: 10px;
+  font-weight: bold;
+  font-family: 'Quattrocento', serif;
+  border-radius: 20px;
+  word-wrap: break-word;
+  word-break: keep-all;
+  max-width: 240px;
+}
+
+.post-content {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.like-button,
+.comment-button {
+  background-color: #ddd;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.like-button:hover,
+.comment-button:hover {
+  background-color: #ccc;
+}
+
+.twitter-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: black;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.twitter-footer-content {
+  text-align: center;
+}
