@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <title>SECRETS</title>
+    <link rel="stylesheet" href="home.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quattrocento&display=swap");
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header-footer">
+      <button class="home-button" onclick="window.location.href='/about'">
+        <i class="fa-sharp fa-solid fa-circle-info"></i>
+      </button>
+      <h1 class="title">OUR SECRETS</h1>
+      <button
+        class="create-button"
+        onclick="window.location.href='/logout'"
+      >
+      <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </header>
+    <div class="alert-body">
+      <div class="<%= alert %>">
+        <%= message %>
+      </div>
+    </div>
+    <div class="main-body">
+      <% foundpost.reverse().forEach(function name(found) { %>
+      <div class="post">
+        <div class="post-header">
+          <div>
+            <img class="logo" />
+          </div>
+          <div class="post-username">
+            <h3><%= found.title %></h3>
+          </div>
+        </div>
+        <div class="post-content">
+          <p><%= found.content %></p>
+        </div>
+        <div class="time">
+          <p><%= found.uploadTime %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+    <footer class="twitter-footer">
+      <div class="plus">
+        <button class="plus-icon-container" onclick="window.location.href='/confession'">
+          <i id = "plus" class="fa-solid fa-circle-plus fa-3x"></i>
+        </button>
+        </div>
+      <div class="twitter-footer-content">
+        <p>Revealing New Secrets Everyday</p>
+      </div>
+    </footer>
+    <script>
+      // Wait for the DOM to be fully loaded before executing the code
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get all the alert boxes with the class "alertsuccess" and "alertupload"
+        var alertBoxes = document.querySelectorAll(
+          ".alertsuccess, .alertupload"
+        );
+
+        // Loop through each alert box
+        alertBoxes.forEach(function (alertBox) {
+          // Set a timeout to hide and then remove the alert box after 5 seconds (5000 milliseconds)
+          setTimeout(function () {
+            // Add the "alert-hidden" class to the alert box
+            alertBox.classList.add("alert-hidden");
+
+            // Wait for the CSS transition to complete before removing the alert box's parent element
+            setTimeout(function () {
+              alertBox.parentElement.remove();
+              document.querySelector(".main-body").style.paddingTop = "90px";
+            }, 1000); // The value of 1000 is the same as the CSS transition duration for the "alert-hidden" class
+          }, 5000);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -5,12 +5,236 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 40px;
+  text-align: center;
+  border-style: solid;
+  border-color: #140426;
+}
+
+.button-login {
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #ff1e1e;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+.button-create {
+  margin: 5px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background-color: #fbd100;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.nothanks{
+  margin: 5px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background-color: #01a0ea;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0077be;
+} 
+
+.popup-style{
+  color: black;
+}
+
+
+.buttontext{
+  background-color: red;
+  font-family: 'Roboto Mono', monospace;
+  position: relative;
+  right: 6px;
+  bottom: 1px;
+  left: 0.0vmax;
+  padding-left: 3px;
+  padding-right: 0px;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: white;
+  color: aliceblue;
+  margin-right: 4px;
+  
+}
+
+#plus{
+  color: #140426;
+}
+
+.plus{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plus-icon-container{
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 23px;
+  border-style: solid;
+  border-color: aliceblue;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.accept {
+  background-color: greenyellow;
+  font-family: 'Raleway', sans-serif;
+  padding: 1em 1em;
+  border-radius: 90px;
+  padding-right: 20%;
+  padding-left: 20%;
+}
+
+.accept:hover {
+  background-color: beige;
+
+}
+
+.reject {
+  background-color: red;
+  font-family: 'Raleway', sans-serif;
+  padding: 1em 1em;
+  border-radius: 90px;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+.reject:hover {
+  background-color: beige;
+}
+
+.admin-body {
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.home-body {
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.about {
+  color: aliceblue;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
 .time {
   font-family: 'Manrope', sans-serif;
   justify-content: space-between;
   margin-top: 20px;
   font-size: 10px;
 }
+
+.alert-body {
+  padding-top: 90px;
+}
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: rgb(233, 17, 17);
+  /* Red */
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+/* The alert message box */
+.alertsuccess {
+  /* Set the initial opacity to 1 */
+  opacity: 1;
+  /* Set the initial visibility to visible */
+  visibility: visible;
+  padding: 15px;
+  background-color: rgb(25, 167, 58);
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  /* Add a transition effect with a duration of 0.3 seconds */
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.alertupload {
+  /* Set the initial opacity to 1 */
+  opacity: 1;
+  /* Set the initial visibility to visible */
+  visibility: visible;
+  padding: 15px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #FFE066;
+  color: black;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  /* Add a transition effect with a duration of 0.3 seconds */
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Add a class to the alert box when it should be hidden */
+.alert-hidden {
+  /* Set the opacity to 0 */
+  opacity: 0;
+  /* Set the visibility to hidden */
+  visibility: hidden;
+}
+
+
+/* The close button */
+
 
 .header-footer {
   position: fixed;
@@ -31,7 +255,6 @@ body {
 }
 
 .main-body {
-  padding-top: 90px;
   padding-bottom: 50px;
 }
 

@@ -18,24 +18,23 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Quattrocento&display=swap");
     </style>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    />
-  </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+  </style> 
+</head>
   <body>
     <header class="header-footer">
       <button class="home-button" onclick="window.location.href='/adminhome'">
         <i class="fas fa-home"></i>
       </button>
       <h1 class="title">OUR SECRETS</h1>
-      <button class="create-button" onclick="window.location.href='/compose'">
-        <i class="fas fa-plus"></i>
+      <button class="create-button button-span" onclick="window.location.href='/confessionrequest'">
+    <span class="buttontext"> <%= count %> </span> 
+    <i class="fa-solid fa-envelope"></i>
       </button>
     </header>
-    <div class="main-body">
+    <div class="admin-body">
       <% foundpost.reverse().forEach(function name(found) { %>
       <div class="post">
         <div class="post-header">
@@ -55,11 +54,15 @@
       </div>
       <% }); %>
     </div>
+    <div class="plus">
+      <button class="plus-icon-container" onclick="window.location.href='/compose'">
+        <i id = "plus" class="fa-solid fa-circle-plus fa-3x"></i>
+      </button>
+    </div>
     <footer class="twitter-footer">
       <div class="twitter-footer-content">
         <p>You Can Post your Secrets anonymously</p>
       </div>
     </footer>
-    <script src="../server.js"></script>
   </body>
 </html>

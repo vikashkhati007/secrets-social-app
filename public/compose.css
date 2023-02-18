@@ -35,7 +35,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 5vh;
+    height: 10vh;
 }
 
 .textarea {

@@ -25,29 +25,20 @@
   </head>
   <body>
     <header class="header-footer">
-      <button class="home-button" onclick="window.location.href='/login'">
-        <i class="fa-solid fa-user-check"></i>
+      <button class="home-button" onclick="window.location.href='/adminhome'">
+        <i class="fas fa-home"></i>
       </button>
-      <h1 class="title">OUR SECRETS</h1>
+      <h1 class="title">REQUESTS</h1>
       <button
         class="create-button"
-        onclick="window.location.href='/createnewuser'"
+        onclick="window.location.href='/confessionrequest'"
       >
-        <i class="fa-solid fa-user-plus"></i>
+        <i class="fa-solid fa-envelope"></i>
       </button>
-      <div id="popup">
-        <div class="popup-content">
-          <h2 class="popup-style">Welcome to our website!</h2>
-          <p class="popup-style">You are not logged in yet.</p>
-          <button class="button-login" onclick="window.location.href='/login'">Login</button>
-          <button class="nothanks">No Thanks</button>
-          <button class="button-create" onclick="window.location.href='/createnewuser'">New User</button>
-        </div>
-      </div>
-      
     </header>
-      <div class="home-body">
-        <% foundpost.reverse().forEach(function name(found) { %>
+    <div class="admin-body">
+      <% foundpost.reverse().forEach(function name(found) { %>
+      <form action="/confessionrequest" method="post">
         <div class="post">
           <div class="post-header">
             <div>
@@ -63,26 +54,24 @@
           <div class="time">
             <p><%= found.uploadTime %></p>
           </div>
+          <input type="hidden" name="title" value="<%= found.title %>" />
+          <input type="hidden" name="content" value="<%= found.content %>" />
+          <input
+            type="hidden"
+            name="uploadTime"
+            value="<%= found.uploadTime %>"
+          />
+          <input type="hidden" name="id" value="<%= found._id %>" />
+          <button class="accept" name="accept" value="accept">ACCEPT</button>
+          <button class="reject" name="reject" value="reject">REJECT</button>
         </div>
-        <% }); %>
-      </div>
+      </form>
+      <% }); %>
+    </div>
     <footer class="twitter-footer">
       <div class="twitter-footer-content">
-        <p>Revealing New Secrets Everyday</p>
+        <p>You Can Post your Secrets anonymously</p>
       </div>
     </footer>
-    <script>
-    // Get the popup element
-    var popup = document.getElementById("popup");
-    
-    // Get the No Thanks button
-    var noThanksBtn = document.querySelector(".nothanks");
-    
-    // Add event listener to the No Thanks button
-    noThanksBtn.addEventListener("click", function() {
-      // Hide the popup
-      popup.style.display = "none";
-    });
-  </script>
   </body>
 </html>
