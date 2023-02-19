@@ -42,7 +42,7 @@
         <div class="post">
           <div class="post-header">
             <div>
-              <img class="logo" />
+              <img src="/images/logo.png">
             </div>
             <div class="post-username">
               <h3><%= found.title %></h3>
@@ -53,6 +53,20 @@
           </div>
           <div class="time">
             <p><%= found.uploadTime %></p>
+          </div>
+          <div>
+            <textarea
+              name="reason"
+              placeholder="Enter Your Reason"
+              style="
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                resize: none;
+                width: 270px;
+              "
+            ></textarea>
           </div>
           <input type="hidden" name="title" value="<%= found.title %>" />
           <input type="hidden" name="content" value="<%= found.content %>" />

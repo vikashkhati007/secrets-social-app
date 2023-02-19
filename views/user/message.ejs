@@ -22,6 +22,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
+    <link rel="shortcut icon" src="/images/favicon.png" type="image/x-icon">
   </head>
   <body>
     <header class="header-footer">
@@ -38,24 +39,24 @@
     </header>
     </div>
     <div class="main-body" style="padding-top: 90px;">
-      <% foundpost.reverse().forEach(function name(found) { %>
-      <form action="/message" method="post">
-      <div class="post">
-        <div class="post-header">
-          <div>
-            <img class="logo" />
+      <% foundpost.reverse().forEach(function(found) { %>
+        <form action="/message" method="post">
+          <div class="post" style="background-color: <%= found.status === 'Approved' ? 'greenyellow' : found.status === 'Disapproved' ? 'red' : 'white' %>;">
+            <div class="post-header">
+              <div class="logo">
+                  <img src="/images/logo.png">
+              </div>
+              <div class="post-username">
+                <h3><%= found.title %></h3>
+              </div>
+            </div>
+            <div class="post-content">
+              <p><%= found.content %></p>
+            </div>
+            <input type="hidden" name="postid" value="<%= found._id %>" />
+            <button class="reject" name="delete" value="delete">DELETE</button>
           </div>
-          <div class="post-username">
-            <h3><%= found.title %></h3>
-          </div>
-        </div>
-        <div class="post-content">
-          <p><%= found.content %></p>
-        </div>
-        <input type="hidden" name="postid" value="<%= found._id %>" />
-        <button class="reject" name="delete" value="delete">DELETE</button>
-      </div>
-          </form>
+        </form>
       <% }); %>
     </div>
     <footer class="twitter-footer">

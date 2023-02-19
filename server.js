@@ -75,6 +75,7 @@ const MessageSchema = new mongoose.Schema({
   },
   title: String,
   content: String,
+  status: String
 });
 
 const Message = mongoose.model("message", MessageSchema);
@@ -535,12 +536,24 @@ app.post("/confessionrequest", (req, res) => {
                     if (err) {
                       console.log(err);
                     } else {
-                      const aceeptmessage = new Message({
-                        user: postid,
-                        title: "Title : "+ founditems.title,
-                        content: "Corgratulate, Your Post is Approved, You can check in homepage",
-                      })
-                      aceeptmessage.save();
+                      if(req.body.reason === ""){
+                        const aceeptmessage = new Message({
+                          user: postid,
+                          title: "Your Post Title : "+ founditems.title,
+                          content: "Congratulation, Your Post is Approved By Admin , You can See Your Post In Homepage Now",
+                          status : "Approved"
+                        });
+                        aceeptmessage.save();
+                      }
+                      else{
+                        const aceeptmessage = new Message({
+                          user: postid,
+                          title: "Your Post Title : "+ founditems.title,
+                          content: "Post Approved : " + req.body.reason,
+                          status : "Approved"
+                        });
+                        aceeptmessage.save();
+                      }
                     }
                   });
                   res.redirect("/adminhome");
@@ -557,12 +570,25 @@ app.post("/confessionrequest", (req, res) => {
   } else if (reject) {
     //Deleting item after accept
     Confession.findById({ _id: itemid }, (err, item) => {
-      const aceeptmessage = new Message({
-        user: postid,
-        title: "Title : "+ item.title,
-        content: "Sorry, Your Post is Disapproved By Admin, You can try Again",
-      });
-      aceeptmessage.save();
+      if(req.body.reason === ""){
+        const aceeptmessage = new Message({
+          user: postid,
+          title: "Your Post Title :  "+ item.title,
+          content: "Sorry, Your Post is Disapproved By Admin , You can Try Again",
+          status : "Disapproved"
+        });
+        aceeptmessage.save();
+      }
+      else{
+        const aceeptmessage = new Message({
+          user: postid,
+          title: "Your Post Title : "+ item.title,
+          content: "Reason : " + req.body.reason,
+          status : "Disapproved"
+        });
+        aceeptmessage.save();
+      }
+  
       Confession.deleteOne({ _id: itemid }, (err, found) => {
         if (err) {
           console.log(err);

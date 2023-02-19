@@ -98,6 +98,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 150px;
+  margin-left: 150px;
 }
 
 .plus-icon-container {
@@ -268,13 +270,14 @@ body {
   color: #fff;
 }
 
-.logo {
-  background-image: url('./images/logo.jpg');
-  width: 200px;
-  height: 200px;
-  background-size: cover;
-  border-color: white;
+img{
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-style: solid;
+  color: rgb(115, 110, 117);
 }
+
 
 .home-button i {
   font-size: 20px;
