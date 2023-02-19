@@ -31,14 +31,15 @@
       <h1 class="title">Notification</h1>
       <button
         class="create-button"
-        onclick="window.location.href='/message'"
+        onclick="window.location.href='/about'"
       >
-        <i class="fa-solid fa-envelope"></i>
+      <i class="fa-solid fa-circle-info"></i>
       </button>
     </header>
     </div>
     <div class="main-body" style="padding-top: 90px;">
       <% foundpost.reverse().forEach(function name(found) { %>
+      <form action="/message" method="post">
       <div class="post">
         <div class="post-header">
           <div>
@@ -49,9 +50,12 @@
           </div>
         </div>
         <div class="post-content">
-          <p><%= found.reason %></p>
+          <p><%= found.content %></p>
         </div>
+        <input type="hidden" name="postid" value="<%= found._id %>" />
+        <button class="reject" name="delete" value="delete">DELETE</button>
       </div>
+          </form>
       <% }); %>
     </div>
     <footer class="twitter-footer">

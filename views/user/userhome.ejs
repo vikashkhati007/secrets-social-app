@@ -25,15 +25,16 @@
   </head>
   <body>
     <header class="header-footer">
-      <button class="home-button" onclick="window.location.href='/about'">
-        <i class="fa-sharp fa-solid fa-circle-info"></i>
+      <button class="home-button" onclick="window.location.href='/logout'">
+        <i class="fa-solid fa-right-from-bracket"></i>
       </button>
       <h1 class="title">OUR SECRETS</h1>
       <button
         class="create-button"
-        onclick="window.location.href='/logout'"
+        onclick="window.location.href='/message'"
       >
-      <i class="fa-solid fa-right-from-bracket"></i>
+    <span class="buttontext"> <%= count %> </span> 
+    <i class="fa-solid fa-envelope"></i>
       </button>
     </header>
     <div class="alert-body">
@@ -90,7 +91,7 @@
             setTimeout(function () {
               alertBox.parentElement.remove();
               document.querySelector(".main-body").style.paddingTop = "90px";
-            }, 1000); // The value of 1000 is the same as the CSS transition duration for the "alert-hidden" class
+            }, 0); // The value of 1000 is the same as the CSS transition duration for the "alert-hidden" class
           }, 5000);
         });
       });

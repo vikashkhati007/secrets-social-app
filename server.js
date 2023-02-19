@@ -30,6 +30,7 @@ mongoose.connect(process.env.MONGO_DB);
 const port = process.env.PORT || 3000;
 
 //Login Database
+
 const UserSchema = new mongoose.Schema({
   role: String,
   username: String,
@@ -55,12 +56,28 @@ const Post = mongoose.model("post", post);
 //
 
 const confession = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   title: String,
   content: String,
   uploadTime: String,
 });
 
 const Confession = mongoose.model("confession", confession);
+
+
+const MessageSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  title: String,
+  content: String,
+});
+
+const Message = mongoose.model("message", MessageSchema);
 
 //
 
@@ -93,7 +110,7 @@ app.post("/login", function (req, res) {
     password: req.body.password,
   });
 
-  req.login(user, function (err) {
+  req.login(user, function (err, user) {
     if (err) {
       res.redirect("/login");
     } else {
@@ -160,6 +177,14 @@ app.post("/createnewuser", function (req, res) {
       res.render("user/createnewacc", { Title: "Username Already taken" });
     } else {
       passport.authenticate("local")(req, res, function () {
+        const userID = user._id;
+        const message = new Message({
+          user: userID,
+          title: "Welcome",
+          content: `Thanks For Joining Us, Read More About us in (about/info) section`
+        });
+        
+        message.save();
         res.redirect("/userhome");
       });
     }
@@ -182,11 +207,21 @@ app.get("/userhome", isUser, function (req, res) {
       if (err) {
         console.log(err);
       } else {
-        res.render("user/userhome", {
-          foundpost: founditem,
-          alert: "alertsuccess",
-          message: "Sucessfully Logged-In - Submit Your Secrets Now",
+        const userId = req.user._id; // Get the user ID
+        console.log(userId);
+        Message.countDocuments({ user : userId }, function (err, message) {
+          if (err) {
+            // handle error
+          } else {
+            res.render("user/userhome", {
+              foundpost: founditem,
+              alert: "alertsuccess",
+              message: "Sucessfully Logged-In - Submit Your Secrets Now",
+              count : message
+            });
+          }
         });
+  
       }
     });
   } else {
@@ -291,7 +326,8 @@ app.post("/compose", function (req, res) {
 
 app.get("/confession", function (req, res) {
   if (req.isAuthenticated()) {
-    res.render("user/confession", { inputfields: inputwarning });
+    const userId = req.user._id; // Get the user ID
+    res.render("user/confession", { inputfields: inputwarning , userid : userId});
   } else {
     res.redirect("/");
   }
@@ -331,8 +367,10 @@ app.post("/confession", function (req, res) {
     //
     const usertitle = req.body.title;
     const usercontent = req.body.content;
+    const postid = req.body.id;
 
     const newPost = new Confession({
+      user : postid,
       title: usertitle,
       content: usercontent,
       uploadTime: indiadate,
@@ -365,12 +403,21 @@ app.post("/confession", function (req, res) {
           if (err) {
             console.log(err);
           } else {
+            const userId = req.user._id; // Get the user ID
             Post.find({}, function (err, foundpost) {
-                res.render("user/userhome", {
-                  foundpost: foundpost,
-                  alert: "alertupload",
-                  message: "Post Uploaded, Wait for Admin Approval",
+              Message.countDocuments({ user : userId }, function (err, count) {
+                if (err) {
+                  // handle error
+                } else {
+                  res.render("user/userhome", {
+                    foundpost: foundpost,
+                    alert: "alertupload",
+                    message: "Post Uploaded, Wait for Admin Approval",
+                    count: count
+                  });
+                }
               });
+            
             });
           }
         });
@@ -401,6 +448,7 @@ app.post("/confessionrequest", (req, res) => {
   const accept = req.body.accept;
   const reject = req.body.reject;
   const itemid = mongoose.Types.ObjectId(req.body.id);
+  const postid = mongoose.Types.ObjectId(req.body.userid);
 
   if (accept) {
     Confession.findById({ _id: itemid }, (err, item) => {
@@ -487,10 +535,14 @@ app.post("/confessionrequest", (req, res) => {
                     if (err) {
                       console.log(err);
                     } else {
-                      console.log(`Item with id ${itemid} has been deleted.`);
+                      const aceeptmessage = new Message({
+                        user: postid,
+                        title: "Title : "+ founditems.title,
+                        content: "Corgratulate, Your Post is Approved, You can check in homepage",
+                      })
+                      aceeptmessage.save();
                     }
                   });
-
                   res.redirect("/adminhome");
                 }
               });
@@ -505,11 +557,17 @@ app.post("/confessionrequest", (req, res) => {
   } else if (reject) {
     //Deleting item after accept
     Confession.findById({ _id: itemid }, (err, item) => {
+      const aceeptmessage = new Message({
+        user: postid,
+        title: "Title : "+ item.title,
+        content: "Sorry, Your Post is Disapproved By Admin, You can try Again",
+      });
+      aceeptmessage.save();
       Confession.deleteOne({ _id: itemid }, (err, found) => {
         if (err) {
           console.log(err);
         } else {
-          console.log(`Item with id ${itemid} has been deleted.`);
+          
           res.redirect("/confessionrequest");
         }
       });
@@ -520,14 +578,62 @@ app.post("/confessionrequest", (req, res) => {
 });
 
 app.get("/normalhome", function (req, res) {
+  if (req.isAuthenticated()) {
+    const userId = req.user._id; // Get the user ID
   Post.find({}, function (err, founditem) {
     if (err) {
       console.log(err);
     } else {
-      res.render("user/normalhome", { foundpost: founditem });
+      Message.countDocuments({ user : userId }, function (err, count) {
+        if (err) {
+          // handle error
+        } else {
+          res.render("user/normalhome", { foundpost: founditem , count : count});
+        }
+      });
     }
   });
+} else {
+  res.redirect("/");
+}
 });
+
+app.get("/message", function(req,res){
+  if (req.isAuthenticated()) {
+    const userId = req.user._id; // Get the user ID
+    Message.find({ user : userId }, function (err, founditem) {
+      if (err) {
+        // handle error
+      } else {
+        res.render("user/message", { foundpost: founditem});
+      }
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
+app.post("/message", function(req,res){
+  const Delete = req.body.delete;
+  if (req.isAuthenticated()) {
+    if (Delete) {
+    const userId = mongoose.Types.ObjectId(req.body.postid); // Get the user ID
+      //Deleting item after accept
+      Message.deleteOne({_id: userId}, (err, found) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect("/message");
+        }
+      });
+    } else {
+      console.log("confessionrequest post method not working");
+    }
+  } else {
+    res.redirect("/");
+  }
+ 
+})
 
 app.get("/logout", function (req, res) {
   req.logout(function (err) {
