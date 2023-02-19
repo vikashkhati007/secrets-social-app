@@ -539,7 +539,7 @@ app.post("/confessionrequest", (req, res) => {
                       if(req.body.reason === ""){
                         const aceeptmessage = new Message({
                           user: postid,
-                          title: "Your Post Title : "+ founditems.title,
+                          title: "POST APPROVED - TITLE : "+ founditems.title,
                           content: "Congratulation, Your Post is Approved By Admin , You can See Your Post In Homepage Now",
                           status : "Approved"
                         });
@@ -548,8 +548,8 @@ app.post("/confessionrequest", (req, res) => {
                       else{
                         const aceeptmessage = new Message({
                           user: postid,
-                          title: "Your Post Title : "+ founditems.title,
-                          content: "Post Approved : " + req.body.reason,
+                          title: "POST APPROVED - TITLE :"+ founditems.title,
+                          content: "Reason : " + req.body.reason,
                           status : "Approved"
                         });
                         aceeptmessage.save();
@@ -573,7 +573,7 @@ app.post("/confessionrequest", (req, res) => {
       if(req.body.reason === ""){
         const aceeptmessage = new Message({
           user: postid,
-          title: "Your Post Title :  "+ item.title,
+          title: "POST DISAPPROVED - TITLE : "+ item.title,
           content: "Sorry, Your Post is Disapproved By Admin , You can Try Again",
           status : "Disapproved"
         });
@@ -582,7 +582,7 @@ app.post("/confessionrequest", (req, res) => {
       else{
         const aceeptmessage = new Message({
           user: postid,
-          title: "Your Post Title : "+ item.title,
+          title: "POST DISAPPROVED - TITLE : "+ item.title,
           content: "Reason : " + req.body.reason,
           status : "Disapproved"
         });
