@@ -16,13 +16,23 @@
       <h1><%= Title %></h1>
     </div>
     <form action="/createnewuser" method="post">
+      <div class="username" ">
+        <input
+          name="fullname"
+          type="text"
+          class="username-input"
+          autocomplete="off"
+          placeholder="Enter Your Full Name"
+        />
+      </div> 
+    
       <div class="input-addon">
         <input
           name="username"
-          type="text"
+          type="email"
           class="input-addon__input"
           autocomplete="off"
-          placeholder="Enter Secert Username"
+          placeholder="Enter Your Email"
         />
       </div>
       <div class="input-addon password">

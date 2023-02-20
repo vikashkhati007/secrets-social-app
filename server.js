@@ -33,8 +33,9 @@ const port = process.env.PORT || 3000;
 
 const UserSchema = new mongoose.Schema({
   role: String,
-  username: String,
-  password: String,
+  fullname : String,
+  username : String,
+  password: String
 });
 
 //Plugin
@@ -60,6 +61,7 @@ const confession = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  fullname: String,
   title: String,
   content: String,
   uploadTime: String,
@@ -168,8 +170,12 @@ app.get("/createnewuser", function (req, res) {
 });
 
 app.post("/createnewuser", function (req, res) {
+//TO get uppercase letter
+  const formattedName = req.body.fullname.charAt(0).toUpperCase() + req.body.fullname.slice(1);
+
   const newUser = new Login({
     role: userRole,
+    fullname : formattedName,
     username: req.body.username,
   });
 
@@ -209,7 +215,7 @@ app.get("/userhome", isUser, function (req, res) {
         console.log(err);
       } else {
         const userId = req.user._id; // Get the user ID
-        console.log(userId);
+
         Message.countDocuments({ user : userId }, function (err, message) {
           if (err) {
             // handle error
@@ -369,9 +375,11 @@ app.post("/confession", function (req, res) {
     const usertitle = req.body.title;
     const usercontent = req.body.content;
     const postid = req.body.id;
+    const name = req.user.fullname;
 
     const newPost = new Confession({
       user : postid,
+      fullname : name,
       title: usertitle,
       content: usercontent,
       uploadTime: indiadate,
