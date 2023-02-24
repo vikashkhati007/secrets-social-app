@@ -24,7 +24,7 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Phudu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
   </head>
   <body>
     <header class="header-footer">
@@ -44,11 +44,21 @@
       <form action="/confessionrequest" method="post">
         <div class="post">
           <div>
-            <p style="color: rgb(255, 255, 255); background-color: black; text-align: center; border-radius: 90px; font-family: Arial, Helvetica, sans-serif; padding-top: 10px; padding-bottom: 10px; font-family: 'Phudu', cursive;">Post By : <%= found.fullname %></p>
+            <p
+              style="
+                color: rgb(255, 255, 255);
+                background-color: black;
+                text-align: center;
+                border-radius: 90px;
+                font-family: 'Roboto Slab', serif;
+              "
+            >
+              Post By : <%= found.fullname %>
+            </p>
           </div>
           <div class="post-header">
             <div>
-              <img src="/images/logo.png">
+              <img src="/images/logo.png" />
             </div>
             <div class="post-username">
               <h3><%= found.title %></h3>

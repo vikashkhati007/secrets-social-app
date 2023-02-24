@@ -5,6 +5,8 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+
+
 #popup {
   position: fixed;
   top: 0;
@@ -267,17 +269,30 @@ body {
   flex-grow: 1;
   padding-top: 5vh;
   font-family: 'Raleway', sans-serif;
-  color: #fff;
+  font-size: 40px;
 }
+
+
+@media(max-width: 430px){
+  .title{
+    font-size: 32px;
+  }
+}
+
 
 img{
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center;
   border-style: solid;
-  color: rgb(115, 110, 117);
+  animation: color-change 5s ease-in-out infinite;
 }
 
+@keyframes color-change {
+  0% { color: rgb(255, 255, 255); }
+  50% { color: rgb(255, 196, 0); }
+  100% { color: rgb(255, 255, 255); }
+}
 
 .home-button i {
   font-size: 20px;
@@ -313,17 +328,19 @@ img{
 .post-username {
   margin-left: 10px;
   font-weight: bold;
-  font-family: 'Quattrocento', serif;
   border-radius: 20px;
   word-wrap: break-word;
   word-break: keep-all;
   max-width: 240px;
+  font-size: large;
 }
 
 .post-content {
   font-size: 15px;
   display: flex;
   align-items: center;
+  font-family: 'Quattrocento', serif;
+
 }
 
 .post-footer {
